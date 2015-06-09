@@ -21,6 +21,7 @@ inputs = (
 #	("Vertical exaggeration:", (1,1,100)),		# should be used if x-z coordinates are geographic
 	("Vertical shrink:", (5,1,100)),		# used temporarily because steps in y currently equal steps in x-z
 #	("ASCII GRID source file:", "C:\Users\admin\Documents\QGIS\McDemToronto\cdem4mc.asc"),	# don't know how to write file name input
+	("Skip # header rows:", (5,5,6)),		# 5 or 6, depending on dx/dy or cellsize parameters used in GRID file
 )
 
 def perform(level, box, options):
@@ -32,10 +33,11 @@ def perform(level, box, options):
 #	vertical_exaggeration = options["Vertical exaggeration:"]
 	vertical_shrink = options["Vertical shrink:"]
 #	ascii_grid_source_file = options["ASCII GRID source file:"]
+	skip_num_rows = options["Skip # header rows:"]
 
 
 #	myArray  = numpy.loadtxt(ascii_grid_source_file, skiprows=5)
-	myArray  = loadtxt(r"C:\Users\admin\Documents\QGIS\McDemToronto\cdem4mc21.asc", skiprows=5)
+	myArray  = loadtxt(r"C:\Users\admin\Documents\QGIS\McDemToronto\cdem4mc.asc", skiprows=skip_num_rows)
 	
 #	x_max = (myArray.shape[1])/horizontal_exaggeration
 #	z_max = (myArray.shape[0])/horizontal_exaggeration
